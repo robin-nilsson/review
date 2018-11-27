@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+    backend:
+        build: ./backend/docker/dotnet
+        working_dir: /var/app
+        volumes:
+          - ./backend:/var/app
+        links: 
+          - ui
+          - database
+        container_name: review_backend
+        ports:
+          - '5000:5000'
+        command: sh -c "dotnet restore && dotnet build && dotnet run"
+
+    ui:
+        image: mhart/alpine-node:8.11.3
+        working_dir: /var/app
+        volumes:
+          - ./ui:/var/app
+        container_name: review_ui
+        ports:
+          - '3000:3000'
+        command: sh -c "yarn && yarn start"
+
+    database:
+        image: library/percona:5.7
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_ROOT_PASSWORD: topsecret
+          MYSQL_DATABASE: rating
+        ports:
+          - '3306:3306'
+        container_name: review_db
