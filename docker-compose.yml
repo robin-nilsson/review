@@ -2,17 +2,13 @@ version: "3"
 
 services:
     backend:
-        build: ./backend/docker/dotnet
-        working_dir: /var/app
-        volumes:
-          - ./backend:/var/app
+        build: ./
         links: 
           - ui
           - database
         container_name: review_backend
         ports:
           - '5000:5000'
-        command: sh -c "dotnet restore && dotnet build && dotnet run"
 
     ui:
         image: mhart/alpine-node:8.11.3
