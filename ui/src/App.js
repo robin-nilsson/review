@@ -10,7 +10,8 @@ class App extends Component {
 
   fetchData = async () => {
     this.setState({fetching: true})
-    const result = await fetch('http://localhost:5000/api/values');
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const result = await fetch(apiUrl+'/api/values');
     const json = await result.json();
     console.log(json);
     setTimeout(() => {
