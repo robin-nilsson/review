@@ -7,3 +7,7 @@
 http://localhost:3000 UI - javascript and react.js.
 
 http://localhost:5000 Backend - dotnet core web api.
+
+TODO
+------
+Add configs (Dockerfile, .net core, react/node) to VPS.

@@ -11,5 +11,6 @@ FROM microsoft/dotnet:2.1-runtime-alpine
 
 WORKDIR /var/app/
 COPY --from=builder /var/app/published .
-ENV ASPNETCORE_URLS=http://*:5000
+ENV ASPNETCORE_URLS=http://:5000
+ENV ASPNETCORE_ENVIRONMENT=Development
 CMD ["dotnet", "./backend.dll"]  
